@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Design & AI Resources Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .ai-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, #fff 2px, transparent 3px),
+                radial-gradient(circle at 80% 70%, #fff 2px, transparent 3px),
+                radial-gradient(circle at 40% 80%, #fff 2px, transparent 3px),
+                radial-gradient(circle at 60% 20%, #fff 2px, transparent 3px);
+            background-size: 100px 100px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        #searchInput {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        #searchInput:focus {
+            outline: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .category-btn {
+            padding: 12px 24px;
+            background-color: white;
+            border: 2px solid #e0e7ff;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .category-btn i {
+            font-size: 0.9rem;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .resources-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            padding: 25px 25px 15px;
+            flex-grow: 1;
+        }
+        
+        .resource-category {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-cat { background-color: #e0f7fa; color: #006064; }
+        .pipeline-cat { background-color: #f3e5f5; color: #4a148c; }
+        .product-cat { background-color: #e8f5e9; color: #1b5e20; }
+        .research-cat { background-color: #fff3e0; color: #e65100; }
+        .design-cat { background-color: #fce4ec; color: #880e4f; }
+        .ui-cat { background-color: #e3f2fd; color: #0d47a1; }
+        .crm-cat { background-color: #e8f5e9; color: #1b5e20; }
+        .sales-cat { background-color: #fff8e1; color: #ff6f00; }
+        .saas-cat { background-color: #f3e5f5; color: #7b1fa2; }
+        .template-cat { background-color: #e8eaf6; color: #303f9f; }
+        .learning-cat { background-color: #e1f5fe; color: #0277bd; }
+        .case-study-cat { background-color: #f3e5f5; color: #6a1b9a; }
+        .ux-research-cat { background-color: #e0f2f1; color: #004d40; }
+        .method-cat { background-color: #fce4ec; color: #880e4f; }
+        .animation-cat { background-color: #e3f2fd; color: #0d47a1; }
+        .ai-tools-cat { background-color: #f3e5f5; color: #6a1b9a; }
+        .software-cat { background-color: #e8f5e9; color: #1b5e20; }
+        
+        .resource-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .resource-card p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .card-footer {
+            padding: 20px 25px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .visit-btn {
+            padding: 10px 20px;
+            background-color: #667eea;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .visit-btn:hover {
+            background-color: #5a6fd8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(102, 126, 234, 0.2);
+        }
+        
+        .resource-type {
+            font-size: 0.9rem;
+            color: #777;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(255, 165, 0, 0.3);
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+            display: none;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        
+        .counter {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .counter-item {
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            min-width: 150px;
+            text-align: center;
+        }
+        
+        .counter-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .mentor-quote {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #667eea;
+            font-style: italic;
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .resources-container { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            .categories { flex-direction: column; align-items: center; }
+            .category-btn { width: 80%; text-align: center; justify-content: center; }
+            .counter { flex-direction: column; align-items: center; }
+            .counter-item { width: 80%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="ai-pattern"></div>
+            <div class="header-content">
+                <h1>Complete Design & AI Resources Hub</h1>
+                <p class="subtitle">A comprehensive collection of design inspiration, AI tools, SaaS UI, UX research methods, and industry resources.</p>
+                
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search for resources by keyword, category, or type...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+        </header>
+        
+        <div class="mentor-quote">
+            <p><i class="fas fa-quote-left" style="color: #667eea; margin-right: 10px;"></i> 
+            UX Mentor (Aatreyee): Vipan, ye mentor ki aavaj bahot sweet chhote bachhe ki taraha hai
+            <i class="fas fa-quote-right" style="color: #667eea; margin-left: 10px;"></i></p>
+        </div>
+        
+        <div class="categories">
+            <button class="category-btn active" data-category="all"><i class="fas fa-th-large"></i> All Resources</button>
+            <button class="category-btn" data-category="animation"><i class="fas fa-film"></i> Animation</button>
+            <button class="category-btn" data-category="ai-tools"><i class="fas fa-robot"></i> AI Tools</button>
+            <button class="category-btn" data-category="software"><i class="fas fa-laptop-code"></i> Software</button>
+            <button class="category-btn" data-category="ux-research"><i class="fas fa-search"></i> UX Research</button>
+            <button class="category-btn" data-category="method"><i class="fas fa-clipboard-list"></i> Method Directories</button>
+            <button class="category-btn" data-category="saas"><i class="fas fa-cloud"></i> SaaS UI Inspiration</button>
+            <button class="category-btn" data-category="case-study"><i class="fas fa-file-alt"></i> Case Studies</button>
+            <button class="category-btn" data-category="design"><i class="fas fa-palette"></i> Design Inspiration</button>
+        </div>
+        
+        <div class="counter">
+            <div class="counter-item">
+                <div class="counter-number" id="totalCount">62</div>
+                <div>Total Resources</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number" id="filteredCount">62</div>
+                <div>Currently Showing</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number" id="featuredCount">21</div>
+                <div>Featured Resources</div>
+            </div>
+        </div>
+        
+        <div class="resources-container" id="resourcesContainer">
+            <!-- Resources will be dynamically inserted here -->
+        </div>
+        
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search"></i>
+            <h3>No resources found</h3>
+            <p>Try adjusting your search or filter to find what you're looking for.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Complete Design & AI Resources Hub | Now includes Animation, AI Tools & Software Resources</p>
+        <p>Last updated: January 2026 | 62 Resources across 9 Categories</p>
+    </footer>
+
+    <script>
+        const resources = [
+            // Animation & Motion Design (Newly Added)
+            {
+                id: 1,
+                title: "Rive — Create with Motion",
+                description: "Design, code, and animate in one collaborative editor — then ship anywhere. Build apps, games, websites, vehicle interfaces, and more.",
+                category: "animation",
+                type: "Animation Tool",
+                url: "https://rive.app",
+                featured: true
+            },
+            {
+                id: 2,
+                title: "Dribbble Animation Tags",
+                description: "Browse thousands of animation examples, UI motion designs, and micro-interactions from top designers worldwide.",
+                category: "animation",
+                type: "Inspiration Gallery",
+                url: "https://dribbble.com/tags/animation",
+                featured: false
+            },
+            {
+                id: 3,
+                title: "Behance — Design Portfolio Platform",
+                description: "Adobe's platform for showcasing and discovering creative work, including motion graphics, UI animations, and interactive designs.",
+                category: "animation",
+                type: "Portfolio Platform",
+                url: "https://behance.net",
+                featured: false
+            },
+            {
+                id: 4,
+                title: "Awwwards — Website Awards",
+                description: "Recognizing the talent and effort of web designers, developers, and agencies creating exceptional digital experiences with animations.",
+                category: "animation",
+                type: "Awards Platform",
+                url: "https://awwwards.com",
+                featured: false
+            },
+            {
+                id: 5,
+                title: "Webflow Made in Webflow (Animations)",
+                description: "Showcase of stunning websites built with Webflow, featuring advanced animations and interactive experiences.",
+                category: "animation",
+                type: "Showcase",
+                url: "https://webflow.com/made-in-webflow/popular#animations",
+                featured: true
+            },
+            {
+                id: 6,
+                title: "Page Flows — UI/UX Design Inspiration",
+                description: "Discover the largest library of UI/UX design inspiration for mobile and web Apps with animated user flow examples.",
+                category: "animation",
+                type: "Flow Library",
+                url: "https://pageflows.com",
+                featured: false
+            },
+            
+            // AI Tools & Platforms (Newly Added)
+            {
+                id: 7,
+                title: "Character.AI — AI Chat, Reimagined",
+                description: "Chat with millions of AI Characters on the #1 AI chat app. Where will your next adventure take you?",
+                category: "ai-tools",
+                type: "AI Chat Platform",
+                url: "https://character.ai",
+                featured: true
+            },
+            {
+                id: 8,
+                title: "Genspark — Your All-in-One AI Workspace",
+                description: "AI Slides, AI Sheets, AI Docs, AI Developer, AI Designer, AI Chat, AI Image, AI Video — powered by the best models.",
+                category: "ai-tools",
+                type: "AI Workspace",
+                url: "https://genspark.ai",
+                featured: true
+            },
+            {
+                id: 9,
+                title: "Chronicle — AI Presentation Tool",
+                description: "Chronicle is the modern, AI-powered presentation tool for creating stunning, interactive decks your audience will remember.",
+                category: "ai-tools",
+                type: "Presentation Tool",
+                url: "https://chroniclehq.com",
+                featured: false
+            },
+            {
+                id: 10,
+                title: "Magnific.ai — AI Image Enhancement",
+                description: "Advanced AI-powered image upscaling, enhancement, and generation tools for designers and creators.",
+                category: "ai-tools",
+                type: "Image AI",
+                url: "https://magnific.ai",
+                featured: false
+            },
+            {
+                id: 11,
+                title: "Khroma — AI Color Tool",
+                description: "AI-powered color tool that generates personalized color palettes based on your preferences.",
+                category: "ai-tools",
+                type: "Color AI",
+                url: "https://khroma.co",
+                featured: false
+            },
+            {
+                id: 12,
+                title: "Lovart.ai — AI Art Generator",
+                description: "Create stunning AI-generated artwork and designs with advanced machine learning models.",
+                category: "ai-tools",
+                type: "Art AI",
+                url: "https://lovart.ai",
+                featured: false
+            },
+            {
+                id: 13,
+                title: "Midjourney — AI Image Generation",
+                description: "Advanced AI image generation through Discord, creating stunning visuals from text prompts.",
+                category: "ai-tools",
+                type: "Image Generation",
+                url: "https://midjourney.com/home",
+                featured: true
+            },
+            
+            // Software & Platforms (Newly Added)
+            {
+                id: 14,
+                title: "Alternative.me — Find Better Software Alternatives",
+                description: "Find suitable software alternatives, reviews and comments on Alternative.me. Changing your software stack was never easier.",
+                category: "software",
+                type: "Software Directory",
+                url: "https://alternative.me",
+                featured: true
+            },
+            {
+                id: 15,
+                title: "Product Hunt — The Best New Products in Tech",
+                description: "Product Hunt is a curation of the best new products, every day. Discover the latest mobile apps, websites, and technology products.",
+                category: "software",
+                type: "Product Discovery",
+                url: "https://producthunt.com",
+                featured: true
+            },
+            {
+                id: 16,
+                title: "Webflow — Design Professional Websites Visually",
+                description: "See why over 500,000 professional designers, marketers, and businesses have chosen Webflow to create and host their Website.",
+                category: "software",
+                type: "Web Design Platform",
+                url: "https://webflow.com",
+                featured: true
+            },
+            {
+                id: 17,
+                title: "Freepik — Free Design Resources",
+                description: "Millions of free vectors, PSD, photos and icons for designers. Find resources for your next project.",
+                category: "software",
+                type: "Design Assets",
+                url: "https://freepik.com",
+                featured: false
+            },
+            {
+                id: 18,
+                title: "OpenPeeps — Hand-drawn Illustration Library",
+                description: "A hand-drawn illustration library to create scenes of people. Mix and match to create diverse characters.",
+                category: "software",
+                type: "Illustration Library",
+                url: "https://openpeeps.com",
+                featured: false
+            },
+            {
+                id: 19,
+                title: "Toools.design — Design Resources",
+                description: "Curated collection of design tools, resources, and utilities for designers and developers.",
+                category: "software",
+                type: "Tool Collection",
+                url: "https://toools.design",
+                featured: false
+            },
+            
+            // UX Research Method Directories
+            {
+                id: 20,
+                title: "UX Research Methods Directory | UX Directory",
+                description: "Find the right UX research method for your project based on your goals, budget, and timeline. Includes detailed method breakdowns.",
+                category: "method",
+                type: "Methods Directory",
+                url: "https://userexperience.directory",
+                featured: true
+            },
+            {
+                id: 21,
+                title: "User Research Resources | Maze Collection",
+                description: "A comprehensive collection of UX research resources featuring essential information on research methods, questions, and case studies.",
+                category: "ux-research",
+                type: "Resource Collection",
+                url: "https://maze.co/collections/user-research",
+                featured: true
+            },
+            {
+                id: 22,
+                title: "Stanford UX Community Resources",
+                description: "A curated list of useful UX resources by the Stanford UX community, including the excellent 'Design Better Forms' article.",
+                category: "ux-research",
+                type: "Curated Resources",
+                url: "https://ux.stanford.edu/resources",
+                featured: false
+            },
+            {
+                id: 23,
+                title: "Design Kit by IDEO.org",
+                description: "IDEO.org's platform to learn human-centered design, a creative approach to solving the world's most difficult problems.",
+                category: "learning",
+                type: "Learning Platform",
+                url: "https://designkit.org",
+                featured: true
+            },
+            {
+                id: 24,
+                title: "Medium — UX Design Publications",
+                description: "On Medium, anyone can share insightful perspectives and useful knowledge. Home to thousands of UX articles and case studies.",
+                category: "ux-research",
+                type: "Article Platform",
+                url: "https://medium.com",
+                featured: false
+            },
+            {
+                id: 25,
+                title: "Mobbin — Discover Sites",
+                description: "Browse and search across hundreds of sites for UI & UX research. Latest designs from top companies.",
+                category: "ux-research",
+                type: "Design Research",
+                url: "https://mobbin.com/discover/sites/latest",
+                featured: true
+            },
+            
+            // SaaS UI Inspiration Resources
+            {
+                id: 26,
+                title: "SaaS UI Inspiration – Landing Pages & Dashboards",
+                description: "A comprehensive collection of SaaS design examples, including landing pages and dashboard interfaces for modern applications.",
+                category: "saas",
+                type: "Design Gallery",
+                url: "https://saasui.design",
+                featured: true
+            },
+            {
+                id: 27,
+                title: "Land-book – SaaS Website Inspiration",
+                description: "Beautifully curated SaaS website designs with a focus on modern UI/UX patterns and conversion-optimized layouts.",
+                category: "saas",
+                type: "Inspiration",
+                url: "https://land-book.com/tag/saas",
+                featured: false
+            },
+            {
+                id: 28,
+                title: "Lapa Ninja – SaaS Landing Page Examples",
+                description: "A massive collection of SaaS landing page designs from real companies, perfect for conversion rate optimization research.",
+                category: "saas",
+                type: "Examples",
+                url: "https://lapa.ninja/tag/saas",
+                featured: false
+            },
+            {
+                id: 29,
+                title: "One Page Love – SaaS One-Page Sites",
+                description: "Showcase of beautifully designed single-page SaaS websites with modern UI patterns and effective user flows.",
+                category: "saas",
+                type: "Showcase",
+                url: "https://onepagelove.com/saas",
+                featured: false
+            },
+            {
+                id: 30,
+                title: "Uplabs – SaaS UI Kits & Design Inspiration",
+                description: "Premium UI kits, design resources, and inspiration specifically curated for SaaS application development.",
+                category: "saas",
+                type: "UI Kits",
+                url: "https://uplabs.com/search/saas",
+                featured: false
+            },
+            {
+                id: 31,
+                title: "Tailwind UI – SaaS Components",
+                description: "Production-ready SaaS UI components built with Tailwind CSS for rapid application development.",
+                category: "saas",
+                type: "Components",
+                url: "https://tailwindui.com/",
+                featured: true
+            },
+            {
+                id: 32,
+                title: "UI8 – SaaS UI/UX Kits",
+                description: "High-quality SaaS UI kits, dashboards, and design systems from top designers around the world.",
+                category: "saas",
+                type: "UI Kits",
+                url: "https://ui8.net/search?query=saas",
+                featured: false
+            },
+            {
+                id: 33,
+                title: "Creative Tim – SaaS Dashboards & Templates",
+                description: "Premium dashboard templates and UI kits specifically designed for SaaS applications and admin panels.",
+                category: "saas",
+                type: "Templates",
+                url: "https://creative-tim.com/templates/dashboard",
+                featured: false
+            },
+            {
+                id: 34,
+                title: "ThemeForest – SaaS Website Templates",
+                description: "Marketplace for premium SaaS website templates with modern designs and responsive layouts.",
+                category: "saas",
+                type: "Templates",
+                url: "https://themeforest.net/category/site-templates/technology/saas",
+                featured: false
+            },
+            {
+                id: 35,
+                title: "BootstrapMade – SaaS Templates",
+                description: "Free and premium Bootstrap templates specifically designed for SaaS startups and applications.",
+                category: "saas",
+                type: "Templates",
+                url: "https://bootstrapmade.com/bootstrap-saas-templates/",
+                featured: false
+            },
+            
+            // Case Studies & Real SaaS Examples
+            {
+                id: 36,
+                title: "Crft – SaaS Landing Page Case Studies",
+                description: "Detailed case studies analyzing successful SaaS landing pages with insights on conversion optimization.",
+                category: "case-study",
+                type: "Case Studies",
+                url: "https://crft.xyz",
+                featured: true
+            },
+            {
+                id: 37,
+                title: "Collect UI – Daily Design Inspiration",
+                description: "Daily UI/UX design inspiration collected from Daily UI archive and beyond, based on Dribbble shots.",
+                category: "case-study",
+                type: "Design Gallery",
+                url: "https://collectui.com",
+                featured: true
+            },
+            {
+                id: 38,
+                title: "Mobbin – UI & UX Design Inspiration",
+                description: "Save hours of UI & UX research with a library of 400,000+ fully searchable mobile & web app screenshots.",
+                category: "case-study",
+                type: "Pattern Library",
+                url: "https://mobbin.com",
+                featured: true
+            },
+            {
+                id: 39,
+                title: "Screenshots.design – App Store Designs",
+                description: "Custom, conversion-optimized app store screenshot designs crafted by experienced app growth experts.",
+                category: "case-study",
+                type: "Design Service",
+                url: "https://screenshots.design",
+                featured: false
+            },
+            
+            // SaaS Learning & Best Practices
+            {
+                id: 40,
+                title: "SaaSlist – Growth & Product Frameworks",
+                description: "Comprehensive collection of SaaS growth frameworks, product strategies, and business models.",
+                category: "learning",
+                type: "Frameworks",
+                url: "https://saaslist.org",
+                featured: true
+            },
+            {
+                id: 41,
+                title: "ProfitWell Blog – SaaS Growth Hacks & Metrics",
+                description: "Expert insights on SaaS metrics, pricing strategies, retention, and growth hacking techniques.",
+                category: "learning",
+                type: "Blog",
+                url: "https://profitwell.com/blog",
+                featured: true
+            },
+            {
+                id: 42,
+                title: "SaaS Capital – Metrics & Benchmarks",
+                description: "Industry benchmarks and key metrics for SaaS companies at different stages of growth.",
+                category: "learning",
+                type: "Benchmarks",
+                url: "https://saas-capital.com/saas-metrics-benchmarks",
+                featured: false
+            },
+            {
+                id: 43,
+                title: "Reforge – SaaS Product Playbooks",
+                description: "Advanced programs and playbooks for product-led growth, retention, and monetization strategies.",
+                category: "learning",
+                type: "Courses",
+                url: "https://reforge.com",
+                featured: true
+            },
+            
+            // Design Inspiration Resources
+            {
+                id: 44,
+                title: "Design Spells - UI/UX Resources",
+                description: "Curated design resources, tools, and inspiration for UI/UX designers working on digital products.",
+                category: "design",
+                type: "Resource Hub",
+                url: "https://www.designspells.com/",
+                featured: false
+            },
+            {
+                id: 45,
+                title: "Landing Love - Landing Page Inspiration",
+                description: "A curated gallery of beautiful landing page designs from real companies, great for conversion-focused design.",
+                category: "design",
+                type: "Inspiration Gallery",
+                url: "https://www.landing.love/",
+                featured: false
+            },
+            {
+                id: 46,
+                title: "Refero - Design References",
+                description: "A collection of design references from real products, organized by patterns and components.",
+                category: "design",
+                type: "Reference Library",
+                url: "https://refero.design/",
+                featured: false
+            },
+            {
+                id: 47,
+                title: "Minimal Gallery - Clean UI Inspiration",
+                description: "A showcase of minimal, clean, and functional UI designs for modern digital products and applications.",
+                category: "design",
+                type: "Design Showcase",
+                url: "https://minimal.gallery/",
+                featured: false
+            },
+            {
+                id: 48,
+                title: "Pageflows — UI/UX Design Inspiration",
+                description: "UI/UX Design Inspiration for Apps and Websites — Access searchable app screenshots and save your time on design research.",
+                category: "design",
+                type: "Flow Inspiration",
+                url: "https://pageflows.com",
+                featured: false
+            },
+            {
+                id: 49,
+                title: "UI Goodies — Design Resources",
+                description: "Collection of UI components, design systems, and resources for modern interface design.",
+                category: "design",
+                type: "Component Library",
+                url: "https://uigoodies.com",
+                featured: false
+            },
+            {
+                id: 50,
+                title: "Land-book — Website Design Inspiration",
+                description: "Curated collection of beautiful website designs for inspiration and reference.",
+                category: "design",
+                type: "Website Gallery",
+                url: "https://land-book.com",
+                featured: false
+            },
+            
+            // AI Product Design Resources
+            {
+                id: 51,
+                title: "Google People + AI Guidebook",
+                description: "A comprehensive set of methods and best practices for designing user-centered AI products.",
+                category: "product",
+                type: "Guidelines",
+                url: "https://pair.withgoogle.com/guidebook/",
+                featured: true
+            },
+            {
+                id: 52,
+                title: "Weights & Biases (W&B) Dashboard",
+                description: "The industry standard for visualizing ML experiments, pipeline performance, and model versioning.",
+                category: "dashboard",
+                type: "Toolkit",
+                url: "https://wandb.ai/site",
+                featured: true
+            },
+            {
+                id: 53,
+                title: "Microsoft Guidelines for Human-AI Interaction",
+                description: "18 prescriptive design guidelines for human-AI interaction, based on over 20 years of research.",
+                category: "product",
+                type: "Guidelines",
+                url: "https://www.microsoft.com/en-us/research/project/guidelines-for-human-ai-interaction/",
+                featured: true
+            },
+            {
+                id: 54,
+                title: "Stanford Human-Centered AI (HAI)",
+                description: "Top-tier research papers focusing on how AI should be designed to augment human intelligence.",
+                category: "research",
+                type: "Research Papers",
+                url: "https://hai.stanford.edu/research",
+                featured: false
+            },
+            {
+                id: 55,
+                title: "MLflow Model Tracking",
+                description: "An open-source platform to manage the ML lifecycle, including experimentation and deployment dashboards.",
+                category: "pipeline",
+                type: "Templates",
+                url: "https://mlflow.org/",
+                featured: false
+            },
+            {
+                id: 56,
+                title: "Arize AI: ML Observability",
+                description: "A platform for monitoring AI pipelines in production, specializing in model drift and data quality.",
+                category: "pipeline",
+                type: "Case Studies",
+                url: "https://arize.com/",
+                featured: true
+            },
+            {
+                id: 57,
+                title: "Apple Human Interface Guidelines: Machine Learning",
+                description: "Apple's official design patterns for integrating ML features into iOS and macOS apps.",
+                category: "product",
+                type: "Design Patterns",
+                url: "https://developer.apple.com/design/human-interface-guidelines/machine-learning",
+                featured: false
+            },
+            {
+                id: 58,
+                title: "IBM AI Ethics & Fairness (AI 360)",
+                description: "An open-source toolkit and research hub for detecting and mitigating bias in machine learning models.",
+                category: "research",
+                type: "Research Hub",
+                url: "https://aif360.res.ibm.com/",
+                featured: true
+            },
+            {
+                id: 59,
+                title: "Streamlit AI Gallery",
+                description: "A collection of interactive data apps and dashboards built specifically for machine learning projects.",
+                category: "dashboard",
+                type: "Examples",
+                url: "https://streamlit.io/gallery",
+                featured: false
+            },
+            {
+                id: 60,
+                title: "Hugging Face Pipelines",
+                description: "Documentation and guides for building and automating ML pipelines for NLP and Computer Vision.",
+                category: "pipeline",
+                type: "Guide",
+                url: "https://huggingface.co/docs/transformers/main_classes/pipelines",
+                featured: false
+            },
+            {
+                id: 61,
+                title: "Framer AI Design Tool",
+                description: "A modern design tool that uses AI to generate layouts, prototypes, and copy from simple text prompts.",
+                category: "product",
+                type: "Tool Review",
+                url: "https://www.framer.com/ai/",
+                featured: true
+            },
+            {
+                id: 62,
+                title: "SurveyCircle - Research Platform",
+                description: "A platform for creating and distributing surveys, valuable for user research and gathering feedback.",
+                category: "research",
+                type: "Research Tool",
+                url: "https://www.surveycircle.com/en/",
+                featured: false
+            }
+        ];
+
+        // DOM elements
+        const resourcesContainer = document.getElementById('resourcesContainer');
+        const searchInput = document.getElementById('searchInput');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const noResults = document.getElementById('noResults');
+        const totalCount = document.getElementById('totalCount');
+        const filteredCount = document.getElementById('filteredCount');
+        const featuredCount = document.getElementById('featuredCount');
+
+        // Initialize the page
+        function init() {
+            renderResources(resources);
+            updateCounters(resources);
+            
+            // Add event listeners
+            searchInput.addEventListener('input', filterResources);
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', handleCategoryFilter);
+            });
+        }
+
+        // Update all counters
+        function updateCounters(resourceArray) {
+            totalCount.textContent = resources.length;
+            filteredCount.textContent = resourceArray.length;
+            
+            // Count featured resources
+            const featuredResources = resources.filter(r => r.featured);
+            featuredCount.textContent = featuredResources.length;
+        }
+
+        // Render resources to the page
+        function renderResources(resourceArray) {
+            resourcesContainer.innerHTML = '';
+            
+            if (resourceArray.length === 0) {
+                noResults.style.display = 'block';
+                updateCounters(resourceArray);
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            
+            resourceArray.forEach(resource => {
+                const card = document.createElement('div');
+                card.className = 'resource-card';
+                
+                // Determine category class
+                let categoryClass = '';
+                switch(resource.category) {
+                    case 'dashboard': categoryClass = 'dashboard-cat'; break;
+                    case 'pipeline': categoryClass = 'pipeline-cat'; break;
+                    case 'product': categoryClass = 'product-cat'; break;
+                    case 'research': categoryClass = 'research-cat'; break;
+                    case 'design': categoryClass = 'design-cat'; break;
+                    case 'ui': categoryClass = 'ui-cat'; break;
+                    case 'crm': categoryClass = 'crm-cat'; break;
+                    case 'sales': categoryClass = 'sales-cat'; break;
+                    case 'saas': categoryClass = 'saas-cat'; break;
+                    case 'learning': categoryClass = 'learning-cat'; break;
+                    case 'case-study': categoryClass = 'case-study-cat'; break;
+                    case 'ux-research': categoryClass = 'ux-research-cat'; break;
+                    case 'method': categoryClass = 'method-cat'; break;
+                    case 'animation': categoryClass = 'animation-cat'; break;
+                    case 'ai-tools': categoryClass = 'ai-tools-cat'; break;
+                    case 'software': categoryClass = 'software-cat'; break;
+                }
+                
+                // Featured badge
+                const featuredBadge = resource.featured ? 
+                    `<div class="featured-badge"><i class="fas fa-star"></i> Featured</div>` : '';
+                
+                card.innerHTML = `
+                    ${featuredBadge}
+                    <div class="card-header">
+                        <span class="resource-category ${categoryClass}">
+                            <i class="fas ${getCategoryIcon(resource.category)}"></i> 
+                            ${getCategoryName(resource.category)}
+                        </span>
+                        <h3>${resource.title}</h3>
+                        <p>${resource.description}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${resource.url}" target="_blank" class="visit-btn">
+                            <i class="fas fa-external-link-alt"></i> Visit Resource
+                        </a>
+                        <span class="resource-type">
+                            <i class="fas ${getTypeIcon(resource.type)}"></i> ${resource.type}
+                        </span>
+                    </div>
+                `;
+                
+                resourcesContainer.appendChild(card);
+            });
+            
+            updateCounters(resourceArray);
+        }
+
+        // Get icon for category
+        function getCategoryIcon(category) {
+            switch(category) {
+                case 'dashboard': return 'fa-tachometer-alt';
+                case 'pipeline': return 'fa-code-branch';
+                case 'product': return 'fa-robot';
+                case 'research': return 'fa-flask';
+                case 'design': return 'fa-palette';
+                case 'ui': return 'fa-paint-brush';
+                case 'saas': return 'fa-cloud';
+                case 'crm': return 'fa-users';
+                case 'sales': return 'fa-chart-line';
+                case 'learning': return 'fa-graduation-cap';
+                case 'case-study': return 'fa-file-alt';
+                case 'ux-research': return 'fa-search';
+                case 'method': return 'fa-clipboard-list';
+                case 'animation': return 'fa-film';
+                case 'ai-tools': return 'fa-magic';
+                case 'software': return 'fa-laptop-code';
+                default: return 'fa-link';
+            }
+        }
+
+        // Get icon for resource type
+        function getTypeIcon(type) {
+            if (type.includes('Guideline') || type.includes('Pattern')) return 'fa-book';
+            if (type.includes('Tool') || type.includes('Kit')) return 'fa-tools';
+            if (type.includes('Research')) return 'fa-microscope';
+            if (type.includes('Template')) return 'fa-layer-group';
+            if (type.includes('Dashboard')) return 'fa-chart-bar';
+            if (type.includes('Gallery') || type.includes('Showcase')) return 'fa-images';
+            if (type.includes('Animation')) return 'fa-film';
+            if (type.includes('AI')) return 'fa-robot';
+            if (type.includes('Platform')) return 'fa-cloud';
+            return 'fa-file-alt';
+        }
+
+        // Get display name for category
+        function getCategoryName(category) {
+            switch(category) {
+                case 'dashboard': return 'Dashboards';
+                case 'pipeline': return 'Job Pipelines';
+                case 'product': return 'AI Products';
+                case 'research': return 'Research';
+                case 'design': return 'Design Inspiration';
+                case 'ui': return 'UI/UX Reference';
+                case 'saas': return 'SaaS UI Inspiration';
+                case 'crm': return 'CRM Tools';
+                case 'sales': return 'Sales Platforms';
+                case 'learning': return 'Learning';
+                case 'case-study': return 'Case Studies';
+                case 'ux-research': return 'UX Research';
+                case 'method': return 'Method Directories';
+                case 'animation': return 'Animation';
+                case 'ai-tools': return 'AI Tools';
+                case 'software': return 'Software';
+                default: return category;
+            }
+        }
+
+        // Handle category filtering
+        function handleCategoryFilter(e) {
+            const category = e.target.dataset.category;
+            
+            // Update active button
+            categoryButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            e.target.classList.add('active');
+            
+            filterResources();
+        }
+
+        // Filter resources based on search and category
+        function filterResources() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeCategory = document.querySelector('.category-btn.active').dataset.category;
+            
+            const filteredResources = resources.filter(resource => {
+                // Check category filter
+                if (activeCategory !== 'all' && resource.category !== activeCategory) {
+                    return false;
+                }
+                
+                // Check search filter
+                if (searchTerm.trim() === '') {
+                    return true;
+                }
+                
+                // Search in title, description, type, and category
+                const searchIn = `${resource.title} ${resource.description} ${resource.type} ${getCategoryName(resource.category)}`.toLowerCase();
+                return searchIn.includes(searchTerm);
+            });
+            
+            renderResources(filteredResources);
+        }
+
+        // Initialize the page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
